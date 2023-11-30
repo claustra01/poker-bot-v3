@@ -10,7 +10,7 @@
     "lint": "eslint ./src --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "fmt": "prettier --write **/*.{js,jsx,ts,tsx,css,scss}",
     "fmt:warn": "prettier --l **/*.{js,jsx,ts,tsx,css,scss}",
-    "prepare": "husky install"
+    "prepare": "node --eval 'process.exit(process.env.NODE_ENV === `production` ? 0 : 1)' || husky install"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "pnpm run lint"

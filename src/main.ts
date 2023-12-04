@@ -1,7 +1,11 @@
 import { GatewayIntentBits, Client, Partials, Message } from 'discord.js';
+import express from 'express';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 8080;
 
 const client = new Client({
   intents: [
@@ -29,3 +33,7 @@ client.on('messageCreate', async (message: Message) => {
 });
 
 client.login(process.env.BOT_TOKEN);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

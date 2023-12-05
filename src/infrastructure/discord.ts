@@ -28,9 +28,11 @@ export const runDiscordBot = () => {
 
     switch (messageText[0].slice(2)) {
       // ping
-      case Commands.ping.toString():
-        commandPing(message);
+      case Commands.ping.toString(): {
+        const replyPing = commandPing();
+        message.reply(replyPing);
         break;
+      }
       // other commands...
     }
   });

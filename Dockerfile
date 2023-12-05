@@ -31,7 +31,7 @@ ENV NODE_ENV=production
 WORKDIR /opt/app
 
 COPY --from=deps /opt/app/node_modules ./node_modules
-COPY --from=build /opt/app/build/main.js ./build/main.js
+COPY --from=build /opt/app/build ./build
 COPY --from=build /opt/app/.env .
 
 ENTRYPOINT ["node", "build/main.js"]

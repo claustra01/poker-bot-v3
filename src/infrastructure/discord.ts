@@ -22,19 +22,23 @@ export const runDiscordBot = () => {
   });
 
   client.on('messageCreate', async (message: Message) => {
-    const messageText = message.content.split(' ');
+    const commandLines = message.content.split('\n');
     if (message.author.bot) return;
-    if (!messageText[0].startsWith('./')) return;
 
-    switch (messageText[0].slice(2)) {
-      // ping
-      case Commands.ping.toString(): {
-        const replyPing = commandPing();
-        message.reply(replyPing);
-        break;
+    commandLines.forEach((commandLine) => {
+      if (!commandLine.startsWith('./')) return;
+
+      const commandText = commandLine.split(' ');
+      switch (commandText[0].slice(2)) {
+        // ping
+        case Commands.ping.toString(): {
+          const replyPing = commandPing();
+          message.reply(replyPing);
+          break;
+        }
+        // other commands...
       }
-      // other commands...
-    }
+    });
   });
 
   client.login(process.env.BOT_TOKEN);

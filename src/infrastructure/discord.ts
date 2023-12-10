@@ -1,6 +1,6 @@
 import { GatewayIntentBits, Client, Partials, Message } from 'discord.js';
-import { Commands } from '../domain/commands';
-import { commandPing } from '../adapter/ping';
+import { Commands } from '../usecase/type/commands';
+import { commandPing } from '../adapter/command/ping';
 
 export const runDiscordBot = () => {
   const client = new Client({

@@ -1,15 +1,13 @@
 import { GatewayIntentBits, Client, Partials, Message } from 'discord.js';
-import { Commands } from '../domain/commands';
-import { commandPing } from '../adapter/ping';
-import { generateReply } from '../usecase/generateReply';
-import { Reply, ReplyType } from '../domain/reply';
+import { Commands } from '../usecase/type/commands';
+import { commandPing } from '../adapter/command/ping';
+import { generateReply } from '../usecase/function/generateReply';
+import { Reply, ReplyType } from '../usecase/type/reply';
 
 export const runDiscordBot = () => {
   const client = new Client({
     intents: [
-      GatewayIntentBits.DirectMessages,
       GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildMembers,
       GatewayIntentBits.GuildMessages,
       GatewayIntentBits.MessageContent,
     ],

@@ -1,4 +1,4 @@
-import { Reply, ReplyType } from '../domain/reply';
+import { Reply, ReplyType } from '../../usecase/type/reply';
 
 export const commandPing = (): Reply => {
   return {

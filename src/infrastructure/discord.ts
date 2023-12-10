@@ -7,9 +7,7 @@ import { Reply, ReplyType } from '../usecase/type/reply';
 export const runDiscordBot = () => {
   const client = new Client({
     intents: [
-      GatewayIntentBits.DirectMessages,
       GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildMembers,
       GatewayIntentBits.GuildMessages,
       GatewayIntentBits.MessageContent,
     ],

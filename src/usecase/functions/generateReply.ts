@@ -1,4 +1,4 @@
-import { Reply, ReplyType } from '../type/reply';
+import { Reply, ReplyType } from '../types/reply';
 
 export const generateReply = (reply: Reply, line: number): string => {
   switch (reply.type) {

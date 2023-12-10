@@ -1,8 +1,8 @@
 import { GatewayIntentBits, Client, Partials, Message } from 'discord.js';
-import { Commands } from '../usecase/type/commands';
-import { commandPing } from '../adapter/command/ping';
-import { generateReply } from '../usecase/function/generateReply';
-import { Reply, ReplyType } from '../usecase/type/reply';
+import { Commands } from '../usecase/types/commands';
+import { commandPing } from '../adapter/commands/ping';
+import { generateReply } from '../usecase/functions/generateReply';
+import { Reply, ReplyType } from '../usecase/types/reply';
 
 export const runDiscordBot = () => {
   const client = new Client({

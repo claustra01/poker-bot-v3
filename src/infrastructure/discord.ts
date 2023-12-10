@@ -5,9 +5,7 @@ import { commandPing } from '../adapter/command/ping';
 export const runDiscordBot = () => {
   const client = new Client({
     intents: [
-      GatewayIntentBits.DirectMessages,
       GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildMembers,
       GatewayIntentBits.GuildMessages,
       GatewayIntentBits.MessageContent,
     ],

@@ -33,5 +33,6 @@ WORKDIR /opt/app
 COPY --from=deps /opt/app/node_modules ./node_modules
 COPY --from=build /opt/app/build ./build
 COPY --from=build /opt/app/.env .
+COPY --from=build /opt/app/application-settings.json .
 
 ENTRYPOINT ["node", "build/main.js"]

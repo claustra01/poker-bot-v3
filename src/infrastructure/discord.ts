@@ -40,7 +40,7 @@ export const runDiscordBot = () => {
           message.reply(replyText);
           break;
         }
-        // newplayer
+        // register
         case commands.register.name: {
           const reply = await commandRegister(commandText);
           const replyText = generateReply(reply, line);

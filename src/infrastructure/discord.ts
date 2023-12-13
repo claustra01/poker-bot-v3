@@ -3,6 +3,7 @@ import { Commands } from '../usecase/types/commands';
 import { commandPing } from '../adapter/commands/ping';
 import { generateReply } from '../usecase/functions/generateReply';
 import { Reply, ReplyType } from '../usecase/types/reply';
+import { config } from '../config/config';
 
 export const runDiscordBot = () => {
   const client = new Client({
@@ -26,18 +27,11 @@ export const runDiscordBot = () => {
     if (message.author.bot) return;
 
     for (const [line, commandLine] of commandLines.entries()) {
-      if (!commandLine.startsWith('./')) {
-        const commandPrefixError: Reply = {
-          type: ReplyType.Error,
-          errorText: 'Invalid Prefix',
-        };
-        const replyText = generateReply(commandPrefixError, line);
-        message.reply(replyText);
-        return;
-      }
+      const prefix = config.commandPrefix;
+      if (!commandLine.startsWith(prefix)) return;
 
       const commandText = commandLine.split(' ');
-      switch (commandText[0].slice(2)) {
+      switch (commandText[0].slice(prefix.length)) {
         // ping
         case Commands.ping.toString(): {
           const reply = commandPing();

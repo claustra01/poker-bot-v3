@@ -4,7 +4,7 @@ import { commands } from '../usecase/types/commands';
 import { Reply, ReplyType } from '../usecase/types/reply';
 import { generateReply } from '../usecase/functions/generateReply';
 import { commandPing } from '../adapter/commands/ping';
-import { commandNewPlayer } from '../adapter/commands/newPlayer';
+import { commandRegister } from '../adapter/commands/register';
 
 export const runDiscordBot = () => {
   const client = new Client({
@@ -41,8 +41,8 @@ export const runDiscordBot = () => {
           break;
         }
         // newplayer
-        case commands.newplayer.name: {
-          const reply = await commandNewPlayer(commandText);
+        case commands.register.name: {
+          const reply = await commandRegister(commandText);
           const replyText = generateReply(reply, line);
           message.reply(replyText);
           break;

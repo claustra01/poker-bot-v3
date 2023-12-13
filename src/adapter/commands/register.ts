@@ -2,7 +2,7 @@ import { NewPlayer } from '../../usecase/types/player';
 import { Reply, ReplyType } from '../../usecase/types/reply';
 import { playerController } from '../queries/player';
 
-export const commandNewPlayer = async (args: string[]): Promise<Reply> => {
+export const commandRegister = async (args: string[]): Promise<Reply> => {
   switch (args.length) {
     // DiscordIdがないとき
     case 2: {

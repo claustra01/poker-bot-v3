@@ -1,7 +1,7 @@
 include .env
 
 dev:
-	npm run dev
+	pnpm run dev
 
 up:
 	docker compose up -d --build
@@ -14,3 +14,6 @@ deploy:
 	docker login $(ACR_HOST) -u $(ACR_USER) -p $(ACR_PASSWORD)
 	docker tag app $(ACR_HOST)/app:latest
 	docker push $(ACR_HOST)/app:latest
+
+migration:
+	pnpm dlx ts-node src/cmd/migration.ts

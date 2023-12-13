@@ -1,9 +1,10 @@
 import { GatewayIntentBits, Client, Partials, Message } from 'discord.js';
-import { Commands } from '../usecase/types/commands';
-import { commandPing } from '../adapter/commands/ping';
-import { generateReply } from '../usecase/functions/generateReply';
-import { Reply, ReplyType } from '../usecase/types/reply';
 import { config } from '../config/config';
+import { commands } from '../usecase/types/commands';
+import { Reply, ReplyType } from '../usecase/types/reply';
+import { generateReply } from '../usecase/functions/generateReply';
+import { commandPing } from '../adapter/commands/ping';
+import { commandNewPlayer } from '../adapter/commands/newPlayer';
 
 export const runDiscordBot = () => {
   const client = new Client({
@@ -33,8 +34,15 @@ export const runDiscordBot = () => {
       const commandText = commandLine.split(' ');
       switch (commandText[0].slice(prefix.length)) {
         // ping
-        case Commands.ping.toString(): {
+        case commands.ping.name: {
           const reply = commandPing();
+          const replyText = generateReply(reply, line);
+          message.reply(replyText);
+          break;
+        }
+        // newplayer
+        case commands.newplayer.name: {
+          const reply = await commandNewPlayer(commandText);
           const replyText = generateReply(reply, line);
           message.reply(replyText);
           break;

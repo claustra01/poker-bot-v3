@@ -1,0 +1,6 @@
+{
+  "commandPrefix": "./", 
+  "initialRate": 1500,
+  "weightedCoefficient": 4,
+  "calculatingGameCount": 3
+}

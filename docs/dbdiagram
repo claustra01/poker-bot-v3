@@ -1,0 +1,28 @@
+Table players {
+  player_name VARCHAR(20) [pk]
+  discord_id VARCHAR(20)
+  current_rate INTEGER [not null, default: "${INITIAL_RATE}"]
+  max_rate INTEGER [not null, default: "${INITIAL_RATE}"]
+  game_count INTEGER [not null, default: 0]
+  first_win_count INTEGER [not null, default: 0]
+  second_win_count INTEGER [not null, default: 0]
+  third_win_count INTEGER [not null, default: 0]
+}
+
+Table games {
+  game_id INTEGER [pk, increment]
+  count INTEGER [not null]
+  stack INTEGER [not null]
+  date VARCHAR(10) [not null, note: "format: \"2022-01-23\""]
+}
+
+Table calculates {
+  calc_id INTEGER [pk, increment]
+  game_id INTEGER [not null, ref: > games.game_id]
+  winner_name VARCHAR(20) [not null, ref: > players.player_name]
+  winner_rate INTEGER [not null, note: "ref: players.current_rate"]
+  winner_is_excluded BOOLEAN [not null, note: "default: (players.game_count <= ${CALUCRATING_GAME_COUNT})"]
+  loser_name VARCHAR(20) [not null, ref: > players.player_name]
+  loser_rate INTEGER [not null, note: "ref: players.current_rate"]
+  loser_is_excluded BOOLEAN [not null, note: "default: (players.game_count <= ${CALUCRATING_GAME_COUNT})"]
+}

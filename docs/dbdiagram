@@ -1,6 +1,6 @@
 Table players {
   player_name VARCHAR(20) [pk]
-  discord_id VARCHAR(20)
+  discord_id VARCHAR(30)
   current_rate INTEGER [not null, default: "${INITIAL_RATE}"]
   max_rate INTEGER [not null, default: "${INITIAL_RATE}"]
   game_count INTEGER [not null, default: 0]

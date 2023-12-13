@@ -25,7 +25,10 @@ export class PgPool implements IDatabase {
     console.log('Connection Closed');
   }
 
-  public async query(sql: string, values?: string[]): Promise<unknown> {
-    return await this.client.query(sql, values);
+  public async query(sql: string, values?: string[]): Promise<unknown[]> {
+    const result = await this.client.query(sql, values).catch((error) => {
+      throw error;
+    });
+    return result.rows;
   }
 }

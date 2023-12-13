@@ -13,7 +13,7 @@ pool.query(`DROP TABLE IF EXISTS calculates CASCADE;`);
 const queries = `
 CREATE TABLE "players" (
   "player_name" VARCHAR(20) PRIMARY KEY,
-  "discord_id" VARCHAR(20),
+  "discord_id" VARCHAR(30),
   "current_rate" INTEGER NOT NULL DEFAULT ${config.initialRate},
   "max_rate" INTEGER NOT NULL DEFAULT ${config.initialRate},
   "game_count" INTEGER NOT NULL DEFAULT 0,

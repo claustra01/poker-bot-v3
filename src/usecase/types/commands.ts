@@ -6,6 +6,7 @@ export interface Command {
 export const enum CommandList {
   ping = 'ping',
   register = 'register',
+  link = 'link',
 }
 
 export const commands: Record<CommandList, Command> = {
@@ -15,6 +16,10 @@ export const commands: Record<CommandList, Command> = {
   },
   register: {
     name: 'register',
+    requirePermission: false,
+  },
+  link: {
+    name: 'link',
     requirePermission: false,
   },
 };

@@ -16,10 +16,10 @@ export const commands: Record<CommandList, Command> = {
   },
   register: {
     name: 'register',
-    requirePermission: false,
+    requirePermission: true,
   },
   link: {
     name: 'link',
-    requirePermission: false,
+    requirePermission: true,
   },
 };

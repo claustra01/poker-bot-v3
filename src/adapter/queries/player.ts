@@ -31,6 +31,9 @@ export class PlayerController implements IController<Player, NewPlayer> {
       .catch((error) => {
         throw error;
       });
+    if (result.length === 0) {
+      throw new Error(`Player Not Found: ${id}`);
+    }
     return parsePlayer(result[0]);
   }
 
@@ -40,6 +43,9 @@ export class PlayerController implements IController<Player, NewPlayer> {
       .catch((error) => {
         throw error;
       });
+    if (result.length === 0) {
+      throw new Error(`Player Not Found`);
+    }
     return parsePlayerList(result);
   }
 
@@ -72,6 +78,9 @@ export class PlayerController implements IController<Player, NewPlayer> {
       .catch((error) => {
         throw error;
       });
+    if (result.length === 0) {
+      throw new Error(`Player Not Found: ${id}`);
+    }
     return parsePlayer(result[0]);
   }
 }

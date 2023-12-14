@@ -24,15 +24,15 @@ COPY . .
 RUN pnpm run build
 
 #--------------------------------------------------
-FROM node:20-alpine AS runner
+FROM gcr.io/distroless/nodejs20-debian12:nonroot AS runner
 
 ENV TZ=Asia/Tokyo
 ENV NODE_ENV=production
 WORKDIR /opt/app
 
-COPY --from=deps /opt/app/node_modules ./node_modules
-COPY --from=build /opt/app/build ./build
-COPY --from=build /opt/app/.env .
-COPY --from=build /opt/app/application-settings.json .
+COPY --from=deps --chown=nonroot:nonroot /opt/app/node_modules ./node_modules
+COPY --from=build --chown=nonroot:nonroot /opt/app/build ./build
+COPY --from=build --chown=nonroot:nonroot /opt/app/.env .
 
-ENTRYPOINT ["node", "build/main.js"]
+USER nonroot
+ENTRYPOINT ["/nodejs/bin/node", "build/src/main.js"]

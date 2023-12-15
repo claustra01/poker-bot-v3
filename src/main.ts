@@ -1,9 +1,9 @@
-import express from 'express';
 import dotenv from 'dotenv';
-import { runDiscordBot } from './infrastructure/discord';
-import { config } from './config/config';
-import { PgPool } from './infrastructure/postgres';
+import express from 'express';
 import { playerController } from './adapter/queries/player';
+import { config } from './config/config';
+import { runDiscordBot } from './infrastructure/discord';
+import { PgPool } from './infrastructure/postgres';
 
 dotenv.config();
 config.load();

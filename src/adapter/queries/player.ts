@@ -1,10 +1,10 @@
-import { IController } from '../../usecase/interfaces/controller';
-import { IDatabase } from '../../usecase/interfaces/db';
-import { NewPlayer, Player } from '../../usecase/types/player';
 import {
   parsePlayer,
   parsePlayerList,
 } from '../../usecase/functions/parseJson';
+import { IController } from '../../usecase/interfaces/controller';
+import { IDatabase } from '../../usecase/interfaces/db';
+import { NewPlayer, Player } from '../../usecase/types/player';
 
 export class PlayerController implements IController<Player, NewPlayer> {
   private pool!: IDatabase;

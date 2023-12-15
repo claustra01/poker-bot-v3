@@ -1,11 +1,11 @@
-import { GatewayIntentBits, Client, Partials, Message } from 'discord.js';
-import { config } from '../config/config';
-import { commands } from '../usecase/types/commands';
-import { Reply, ReplyType } from '../usecase/types/reply';
-import { generateReply } from '../usecase/functions/generateReply';
+import { Client, GatewayIntentBits, Message, Partials } from 'discord.js';
+import { commandLink } from '../adapter/commands/link';
 import { commandPing } from '../adapter/commands/ping';
 import { commandRegister } from '../adapter/commands/register';
-import { commandLink } from '../adapter/commands/link';
+import { config } from '../config/config';
+import { generateReply } from '../usecase/functions/generateReply';
+import { commands } from '../usecase/types/commands';
+import { Reply, ReplyType } from '../usecase/types/reply';
 
 const checkPermission = (
   message: Message,

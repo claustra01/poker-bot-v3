@@ -49,6 +49,23 @@ export class PlayerController implements IController<Player, NewPlayer> {
     return parsePlayerList(result);
   }
 
+  async readByDiscordOrName(id: string): Promise<Player> {
+    const result = await this.pool
+      .query(`SELECT * FROM players WHERE discord_id = $1`, [id])
+      .catch((error) => {
+        throw error;
+      });
+    if (result.length === 0) {
+      try {
+        const player = await this.read(id);
+        return player;
+      } catch {
+        throw new Error(`Player Not Found: ${id}`);
+      }
+    }
+    return parsePlayer(result[0]);
+  }
+
   async update(replaceData: Player): Promise<Player> {
     const result = await this.pool
       .query(

@@ -10,13 +10,14 @@ export const commandRate = async (args: string[]): Promise<Reply> => {
   }
   try {
     const player = await playerController.readByDiscordOrName(args[1]);
-    const replyText =
-      `${player.discordId ? player.discordId : player.playerName}'s rate: ${
-        player.currentRate
-      }pt (max: ${player.maxRate}pt) / ${player.gameCount}game\n` +
-      `${':first_place:'.repeat(player.firstWinCount)}${':second_place:'.repeat(
-        player.secondWinCount
-      )}${':third_place:'.repeat(player.thirdWinCount)}`;
+    let replyText = `${
+      player.discordId ? player.discordId : player.playerName
+    }'s `;
+    replyText += `rate: ${player.currentRate}pt `;
+    replyText += `(max: ${player.maxRate}pt) / ${player.gameCount}game\n`;
+    replyText += `${':first_place:'.repeat(player.firstWinCount)}`;
+    replyText += `${':second_place:'.repeat(player.secondWinCount)}`;
+    replyText += `${':third_place:'.repeat(player.thirdWinCount)}`;
     return {
       type: ReplyType.Text,
       contentText: replyText,

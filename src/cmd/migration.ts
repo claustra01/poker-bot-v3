@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-import { PgPool } from '../infrastructure/postgres';
 import { config } from '../config/config';
+import { PgPool } from '../infrastructure/postgres';
 
 dotenv.config();
 const pool = new PgPool();

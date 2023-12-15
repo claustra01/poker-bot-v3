@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits, Message, Partials } from 'discord.js';
 import { commandLink } from '../adapter/commands/link';
 import { commandPing } from '../adapter/commands/ping';
+import { commandRate } from '../adapter/commands/rate';
 import { commandRegister } from '../adapter/commands/register';
 import { config } from '../config/config';
 import { generateReply } from '../usecase/functions/generateReply';
@@ -74,6 +75,15 @@ export const runDiscordBot = () => {
           if (!checkPermission(message, line, commands.ping.requirePermission))
             break;
           const reply = commandPing();
+          const replyText = generateReply(reply, line);
+          message.reply(replyText);
+          break;
+        }
+        // rate
+        case commands.rate.name: {
+          if (!checkPermission(message, line, commands.ping.requirePermission))
+            break;
+          const reply = await commandRate(commandText);
           const replyText = generateReply(reply, line);
           message.reply(replyText);
           break;

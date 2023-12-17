@@ -4,5 +4,6 @@
   "initialRate": 1500,
   "BaseWeightedCoefficient": 4,
   "StackWeightedCoefficient": 1.5,
-  "calculatingGameCount": 3
+  "rateIgnoreingGameCount": 3,
+  "initialModeGameCount": 7
 }

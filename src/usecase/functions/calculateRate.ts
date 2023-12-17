@@ -39,10 +39,10 @@ export const calculateRate = (
       gameCount = calc.gameId;
     }
     const diff = calculateDiff(calcList[0]);
-    if (!calc.winnerIsExcluded) {
+    if (!calc.loserIsExcluded) {
       playerObj[calc.winnerName].currentRate += diff;
     }
-    if (!calc.loserIsExcluded) {
+    if (!calc.winnerIsExcluded) {
       playerObj[calc.loserName].currentRate -= diff;
     }
   });

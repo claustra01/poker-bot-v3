@@ -1,13 +1,13 @@
 import { isValid } from 'date-fns';
 import { parse } from 'date-fns/fp';
-import { addMedal } from '../../application/functions/addMedal';
-import { calculateRate } from '../../application/functions/calculateRate';
 import { config } from '../../config/config';
 import { makePlayerObject } from '../../domain/functions/makeObject';
 import { Calculate, NewCalculate } from '../../domain/types/calculate';
 import { Game, NewGame } from '../../domain/types/game';
 import { Player } from '../../domain/types/player';
 import { Reply, ReplyType } from '../../domain/types/reply';
+import { addMedal } from '../../usecase/functions/addMedal';
+import { calculateRate } from '../../usecase/functions/calculateRate';
 import { calculateController } from '../queries/calculate';
 import { gameController } from '../queries/game';
 import { playerController } from '../queries/player';

@@ -13,6 +13,9 @@ import { generateReply } from '../usecase/functions/generateReply';
 import { commands } from '../usecase/types/commands';
 import { Reply, ReplyType } from '../usecase/types/reply';
 
+const commandPrefix = config.commandPrefix;
+const permittedRole = config.permittedRole;
+
 const checkPermission = (
   message: Message,
   line: number,
@@ -23,9 +26,7 @@ const checkPermission = (
   try {
     const guild = message.guild;
     const member = guild?.members.cache.get(message.author.id);
-    const role = guild?.roles.cache.find(
-      (r) => r.name === config.permittedRole
-    );
+    const role = guild?.roles.cache.find((r) => r.name === permittedRole);
     const hasPermission = member?.roles.cache.has(role?.id || '');
     if (!hasPermission) {
       const noPermissionError: Reply = {
@@ -70,11 +71,10 @@ export const runDiscordBot = () => {
     if (message.author.bot) return;
 
     for (const [line, commandLine] of commandLines.entries()) {
-      const prefix = config.commandPrefix;
-      if (!commandLine.startsWith(prefix)) return;
+      if (!commandLine.startsWith(commandPrefix)) return;
 
       const commandText = commandLine.split(' ');
-      switch (commandText[0].slice(prefix.length)) {
+      switch (commandText[0].slice(commandPrefix.length)) {
         // ping
         case commands.ping.name: {
           if (!checkPermission(message, line, commands.ping.requirePermission))

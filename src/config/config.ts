@@ -6,7 +6,8 @@ export class Config {
   initialRate: number;
   BaseWeightedCoefficient: number;
   StackWeightedCoefficient: number;
-  calculatingGameCount: number;
+  rateIgnoreingGameCount: number;
+  initialModeGameCount: number;
 
   constructor() {
     this.commandPrefix = './';
@@ -14,7 +15,8 @@ export class Config {
     this.initialRate = 1500;
     this.BaseWeightedCoefficient = 4;
     this.StackWeightedCoefficient = 1.5;
-    this.calculatingGameCount = 3;
+    this.rateIgnoreingGameCount = 3;
+    this.initialModeGameCount = 7;
   }
 
   load(): void {
@@ -23,7 +25,8 @@ export class Config {
     this.initialRate = settings.initialRate;
     this.BaseWeightedCoefficient = settings.BaseWeightedCoefficient;
     this.StackWeightedCoefficient = settings.StackWeightedCoefficient;
-    this.calculatingGameCount = settings.calculatingGameCount;
+    this.rateIgnoreingGameCount = settings.rateIgnoreingGameCount;
+    this.initialModeGameCount = settings.initialModeGameCount;
     console.log('Config Loaded Successfully');
   }
 }

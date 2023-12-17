@@ -1,9 +1,13 @@
 import { Client, GatewayIntentBits, Message, Partials } from 'discord.js';
+import { commandHelp } from '../adapter/commands/help';
 import { commandLink } from '../adapter/commands/link';
 import { commandPing } from '../adapter/commands/ping';
 import { commandRanking } from '../adapter/commands/ranking';
 import { commandRate } from '../adapter/commands/rate';
+import { commandRecalculate } from '../adapter/commands/recalculate';
 import { commandRegister } from '../adapter/commands/register';
+import { commandResult } from '../adapter/commands/result';
+import { commandRollback } from '../adapter/commands/rollback';
 import { config } from '../config/config';
 import { generateReply } from '../usecase/functions/generateReply';
 import { commands } from '../usecase/types/commands';
@@ -80,6 +84,15 @@ export const runDiscordBot = () => {
           message.reply(replyText);
           break;
         }
+        // help
+        case commands.help.name: {
+          if (!checkPermission(message, line, commands.ping.requirePermission))
+            break;
+          const reply = commandHelp();
+          const replyText = generateReply(reply, line);
+          message.reply(replyText);
+          break;
+        }
         // rate
         case commands.rate.name: {
           if (!checkPermission(message, line, commands.ping.requirePermission))
@@ -118,8 +131,33 @@ export const runDiscordBot = () => {
           message.reply(replyText);
           break;
         }
-        // other commands...
-
+        // result
+        case commands.result.name: {
+          if (!checkPermission(message, line, commands.link.requirePermission))
+            break;
+          const reply = await commandResult(commandText);
+          const replyText = generateReply(reply, line);
+          message.reply(replyText);
+          break;
+        }
+        // rollback
+        case commands.rollback.name: {
+          if (!checkPermission(message, line, commands.link.requirePermission))
+            break;
+          const reply = await commandRollback(commandText);
+          const replyText = generateReply(reply, line);
+          message.reply(replyText);
+          break;
+        }
+        // recalculate
+        case commands.recalculate.name: {
+          if (!checkPermission(message, line, commands.link.requirePermission))
+            break;
+          const reply = await commandRecalculate();
+          const replyText = generateReply(reply, line);
+          message.reply(replyText);
+          break;
+        }
         // invalid commands
         default: {
           const invalidCommandError: Reply = {

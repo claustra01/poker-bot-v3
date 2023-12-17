@@ -6,7 +6,7 @@ export const generateReply = (reply: Reply, line: number): string => {
       return reply.contentText || '';
     }
     case ReplyType.Error: {
-      return `## Error: Line ${line + 1}\n` + reply.errorText || '';
+      return `### Error: Line ${line + 1}\n` + reply.errorText || '';
     }
   }
 };

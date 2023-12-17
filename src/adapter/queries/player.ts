@@ -49,6 +49,20 @@ export class PlayerController implements IController<Player, NewPlayer> {
     return parsePlayerList(result);
   }
 
+  async readRanking(maxCount: number): Promise<Player[]> {
+    const result = await this.pool
+      .query(`SELECT * FROM players ORDER BY current_rate DESC LIMIT $1`, [
+        maxCount.toString(),
+      ])
+      .catch((error) => {
+        throw error;
+      });
+    if (result.length === 0) {
+      throw new Error(`Player Not Found`);
+    }
+    return parsePlayerList(result);
+  }
+
   async readByDiscordOrName(id: string): Promise<Player> {
     const result = await this.pool
       .query(`SELECT * FROM players WHERE discord_id = $1`, [id])

@@ -11,7 +11,7 @@ Table players {
 
 Table games {
   game_id INTEGER [pk, increment]
-  count INTEGER [not null]
+  entry_count INTEGER [not null]
   stack INTEGER [not null]
   date VARCHAR(10) [not null, note: "format: \"2022-01-23\""]
 }

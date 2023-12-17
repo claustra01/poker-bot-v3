@@ -77,13 +77,13 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
   if (isNaN(entryCount) || isNaN(stack)) {
     return {
       type: ReplyType.Error,
-      errorText: 'Error: entry count and stack must be numbers',
+      errorText: 'Error: Entry count and stack must be numbers',
     };
   }
   if (entryCount != playerNameList.length) {
     return {
       type: ReplyType.Error,
-      errorText: 'Error: entry count and number of players do not match',
+      errorText: 'Error: Entry count and number of players do not match',
     };
   }
   for (let i = 0; i < playerNameList.length; i++) {
@@ -160,6 +160,6 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
 
   return {
     type: ReplyType.Text,
-    contentText: `Result Saved: ${stack}/${entryCount}entry, Id: ${gameId}`,
+    contentText: `Result Saved: ${stack} / ${entryCount}entry, GameID: **${gameId}**`,
   };
 };

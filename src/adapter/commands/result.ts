@@ -1,6 +1,8 @@
 import { isValid } from 'date-fns';
 import { parse } from 'date-fns/fp';
 import { config } from '../../config/config';
+import { calculateRate } from '../../usecase/functions/calculateRate';
+import { makePlayerObject } from '../../usecase/functions/makeObject';
 import { Calculate, NewCalculate } from '../../usecase/types/calculate';
 import { Game, NewGame } from '../../usecase/types/game';
 import { Player } from '../../usecase/types/player';
@@ -57,6 +59,7 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
   const playerNameList = args.slice(4);
   const playerList: Player[] = [];
   const calcList: Calculate[] = [];
+  let gameId = -1;
 
   // validation
   if (
@@ -103,6 +106,7 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
       entryCount,
       stack,
     });
+    gameId = game.gameId;
     for (let i = 0; i < playerList.length - 1; i++) {
       for (let j = 1; j < playerList.length; j++) {
         if (i < j) {
@@ -130,9 +134,24 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
   }
 
   // calculate rate
+  try {
+    await transactionController.begin();
+    const playerObj = makePlayerObject(playerList);
+    const updatedPlayerObj = calculateRate(playerObj, calcList);
+    Object.values(updatedPlayerObj).forEach(async (player) => {
+      await playerController.update(player);
+    });
+    await transactionController.commit();
+  } catch (error) {
+    await transactionController.rollback();
+    return {
+      type: ReplyType.Error,
+      errorText: `${error}`,
+    };
+  }
 
   return {
-    type: ReplyType.Error,
-    contentText: 'Not Implemented',
+    type: ReplyType.Text,
+    contentText: `Result Saved: ${stack}/${entryCount}entry, Id: ${gameId}`,
   };
 };

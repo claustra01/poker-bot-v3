@@ -1,7 +1,10 @@
-import { parseGame, parseGameList } from '../../usecase/functions/parseJson';
-import { IController } from '../../usecase/interfaces/controller';
-import { IDatabase } from '../../usecase/interfaces/db';
-import { Game, NewGame } from '../../usecase/types/game';
+import {
+  parseGame,
+  parseGameList,
+} from '../../application/functions/parseJson';
+import { IController } from '../../application/interfaces/controller';
+import { IDatabase } from '../../application/interfaces/db';
+import { Game, NewGame } from '../../application/types/game';
 
 export class GameController implements IController<Game, NewGame> {
   private pool!: IDatabase;

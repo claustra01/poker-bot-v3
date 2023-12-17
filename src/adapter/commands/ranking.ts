@@ -1,4 +1,4 @@
-import { Reply, ReplyType } from '../../usecase/types/reply';
+import { Reply, ReplyType } from '../../application/types/reply';
 import { playerController } from '../queries/player';
 
 export const commandRanking = async (args: string[]): Promise<Reply> => {

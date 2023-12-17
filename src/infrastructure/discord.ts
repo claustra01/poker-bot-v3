@@ -8,10 +8,10 @@ import { commandRecalculate } from '../adapter/commands/recalculate';
 import { commandRegister } from '../adapter/commands/register';
 import { commandResult } from '../adapter/commands/result';
 import { commandRollback } from '../adapter/commands/rollback';
+import { generateReply } from '../application/functions/generateReply';
+import { commands } from '../application/types/commands';
+import { Reply, ReplyType } from '../application/types/reply';
 import { config } from '../config/config';
-import { generateReply } from '../usecase/functions/generateReply';
-import { commands } from '../usecase/types/commands';
-import { Reply, ReplyType } from '../usecase/types/reply';
 
 const commandPrefix = config.commandPrefix;
 const permittedRole = config.permittedRole;

@@ -24,6 +24,12 @@ export const commandRegister = async (args: string[]): Promise<Reply> => {
     }
     // DiscordIdがあるとき
     case 3: {
+      if (!args[2].startsWith('<@') || !args[2].endsWith('>')) {
+        return {
+          type: ReplyType.Error,
+          errorText: `Invalid DiscordId: ${args[2]}`,
+        };
+      }
       const playerData: NewPlayer = {
         playerName: args[1],
         discordId: args[2],

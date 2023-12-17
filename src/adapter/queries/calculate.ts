@@ -18,9 +18,10 @@ export class CalculateController
   async create(newData: NewCalculate): Promise<Calculate> {
     const result = await this.pool
       .query(
-        `INSERT INTO calculates (game_id, winner_name, winner_rate, winner_is_excluded, loser_name, loser_rate, loser_is_excluded) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+        `INSERT INTO calculates (game_id, stack, winner_name, winner_rate, winner_is_excluded, loser_name, loser_rate, loser_is_excluded) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
         [
           newData.gameId.toString(),
+          newData.stack.toString(),
           newData.winnerName,
           newData.winnerRate.toString(),
           newData.winnerIsExcluded.toString(),
@@ -62,10 +63,11 @@ export class CalculateController
   async update(replaceData: Calculate): Promise<Calculate> {
     const result = await this.pool
       .query(
-        `UPDATE calculates SET game_id = $2, winner_name = $3, winner_rate = $4, winner_is_excluded = $5, loser_name = $6, loser_rate = $7, loser_is_excluded = $8 WHERE calc_id = $1 RETURNING *`,
+        `UPDATE calculates SET game_id = $2, stack = $3, winner_name = $4, winner_rate = $5, winner_is_excluded = $6, loser_name = $7, loser_rate = $8, loser_is_excluded = $9 WHERE calc_id = $1 RETURNING *`,
         [
           replaceData.calcId.toString(),
           replaceData.gameId.toString(),
+          replaceData.stack.toString(),
           replaceData.winnerName,
           replaceData.winnerRate.toString(),
           replaceData.winnerIsExcluded.toString(),

@@ -160,6 +160,6 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
 
   return {
     type: ReplyType.Text,
-    contentText: `Result Saved: ${stack} / ${entryCount}entry, GameID: **${gameId}**`,
+    contentText: `Result Saved: ${entryCount}entry / ${stack}start / GameID: **${gameId}**`,
   };
 };

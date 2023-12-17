@@ -1,6 +1,7 @@
 export type Calculate = {
   calcId: number;
   gameId: number;
+  stack: number;
   winnerName: string;
   winnerRate: number;
   winnerIsExcluded: boolean;
@@ -11,6 +12,7 @@ export type Calculate = {
 
 export type NewCalculate = {
   gameId: number;
+  stack: number;
   winnerName: string;
   winnerRate: number;
   winnerIsExcluded: boolean;

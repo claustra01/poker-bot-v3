@@ -108,6 +108,7 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
         if (i < j) {
           const calc = await insertCalc({
             gameId: game.gameId,
+            stack: game.stack,
             winnerName: playerList[i].playerName,
             winnerRate: playerList[i].currentRate,
             winnerIsExcluded: isExcluded(game.gameId, playerList[i].gameCount),

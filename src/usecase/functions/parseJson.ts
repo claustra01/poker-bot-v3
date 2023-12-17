@@ -90,6 +90,7 @@ export const parseCalculate = (rawData: unknown): Calculate => {
   const data = rawData as {
     calc_id: number;
     game_id: number;
+    stack: number;
     winner_name: string;
     winner_rate: number;
     winner_is_excluded: boolean;
@@ -100,6 +101,7 @@ export const parseCalculate = (rawData: unknown): Calculate => {
   return {
     calcId: data.calc_id,
     gameId: data.game_id,
+    stack: data.stack,
     winnerName: data.winner_name,
     winnerRate: data.winner_rate,
     winnerIsExcluded: data.winner_is_excluded,
@@ -113,6 +115,7 @@ export const parseCalculateList = (rawData: unknown[]): Calculate[] => {
   const dataList = rawData as {
     calc_id: number;
     game_id: number;
+    stack: number;
     winner_name: string;
     winner_rate: number;
     winner_is_excluded: boolean;
@@ -125,6 +128,7 @@ export const parseCalculateList = (rawData: unknown[]): Calculate[] => {
     calculateList.push({
       calcId: data.calc_id,
       gameId: data.game_id,
+      stack: data.stack,
       winnerName: data.winner_name,
       winnerRate: data.winner_rate,
       winnerIsExcluded: data.winner_is_excluded,

@@ -1,6 +1,6 @@
 import { config } from '../../config/config';
-import { Calculate } from '../types/calculate';
-import { PlayerObj } from '../types/player';
+import { Calculate } from '../../domain/types/calculate';
+import { PlayerObj } from '../../domain/types/player';
 
 const BaseWeightedCoefficient = config.BaseWeightedCoefficient;
 const StackWeightedCoefficient = config.StackWeightedCoefficient;

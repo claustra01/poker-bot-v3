@@ -1,5 +1,5 @@
 import { Client } from 'pg';
-import { IDatabase } from '../usecase/interfaces/db';
+import { IDatabase } from '../domain/interfaces/db';
 
 export class PgPool implements IDatabase {
   private client: Client;

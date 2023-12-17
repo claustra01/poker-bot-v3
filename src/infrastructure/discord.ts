@@ -169,6 +169,8 @@ export const runDiscordBot = () => {
           return;
         }
       }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
     }
   });
 

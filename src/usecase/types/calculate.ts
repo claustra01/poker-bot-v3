@@ -1,20 +1,20 @@
 export type Calculate = {
-  calc_id: number;
-  game_id: number;
-  winner_name: string;
-  winner_rate: number;
-  winner_is_excluded: boolean;
-  loser_name: string;
-  loser_rate: number;
-  loser_is_excluded: boolean;
+  calcId: number;
+  gameId: number;
+  winnerName: string;
+  winnerRate: number;
+  winnerIsExcluded: boolean;
+  loserName: string;
+  loserRate: number;
+  loserIsExcluded: boolean;
 };
 
 export type NewCalculate = {
-  game_id: number;
-  winner_name: string;
-  winner_rate: number;
-  winner_is_excluded: boolean;
-  loser_name: string;
-  loser_rate: number;
-  loser_is_excluded: boolean;
+  gameId: number;
+  winnerName: string;
+  winnerRate: number;
+  winnerIsExcluded: boolean;
+  loserName: string;
+  loserRate: number;
+  loserIsExcluded: boolean;
 };

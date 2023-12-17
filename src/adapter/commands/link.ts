@@ -5,13 +5,13 @@ export const commandLink = async (args: string[]): Promise<Reply> => {
   if (args.length !== 3) {
     return {
       type: ReplyType.Error,
-      errorText: `Invalid Arguments: PlayerName, DiscordId`,
+      errorText: `Invalid Arguments: PlayerName, DiscordID`,
     };
   }
   if (!args[2].startsWith('<@') || !args[2].endsWith('>')) {
     return {
       type: ReplyType.Error,
-      errorText: `Invalid DiscordId: ${args[2]}`,
+      errorText: `Error: Invalid DiscordID: **${args[2]}**`,
     };
   }
   try {
@@ -20,7 +20,7 @@ export const commandLink = async (args: string[]): Promise<Reply> => {
     const newData = await playerController.update(oldData);
     return {
       type: ReplyType.Text,
-      contentText: `Link Successful: ${newData.playerName} / ${newData.discordId}`,
+      contentText: `Link Successful: **${newData.playerName}** / ${newData.discordId}`,
     };
   } catch (error) {
     return {

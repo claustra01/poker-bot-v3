@@ -1,9 +1,7 @@
-import { Player } from '../types/player';
+import { Player, PlayerObj } from '../types/player';
 
-export const makePlayerObject = (
-  playerList: Player[]
-): Record<string, Player> => {
-  const playerObj: Record<string, Player> = {};
+export const makePlayerObject = (playerList: Player[]): PlayerObj => {
+  const playerObj: PlayerObj = {};
   playerList.forEach((player) => {
     playerObj[player.playerName] = player;
   });

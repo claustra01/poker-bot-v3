@@ -13,3 +13,5 @@ export type NewPlayer = {
   playerName: string;
   discordId?: string;
 };
+
+export type PlayerObj = Record<string, Player>;

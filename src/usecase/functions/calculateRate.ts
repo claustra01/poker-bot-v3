@@ -1,6 +1,6 @@
 import { config } from '../../config/config';
 import { Calculate } from '../types/calculate';
-import { Player } from '../types/player';
+import { PlayerObj } from '../types/player';
 
 const BaseWeightedCoefficient = config.BaseWeightedCoefficient;
 const StackWeightedCoefficient = config.StackWeightedCoefficient;
@@ -19,9 +19,7 @@ const calculateDiff = (calc: Calculate): number => {
   );
 };
 
-const roundRate = (
-  playerObj: Record<string, Player>
-): Record<string, Player> => {
+const roundRate = (playerObj: PlayerObj): PlayerObj => {
   Object.values(playerObj).forEach((player) => {
     player.currentRate = Math.round(player.currentRate);
     player.maxRate = Math.max(player.currentRate, player.maxRate);
@@ -31,9 +29,9 @@ const roundRate = (
 };
 
 export const calculateRate = (
-  playerObj: Record<string, Player>,
+  playerObj: PlayerObj,
   calcList: Calculate[]
-): Record<string, Player> => {
+): PlayerObj => {
   let gameCount = calcList[0].gameId;
   calcList.forEach((calc) => {
     if (calc.gameId !== gameCount) {

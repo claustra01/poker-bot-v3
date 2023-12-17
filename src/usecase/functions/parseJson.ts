@@ -57,7 +57,7 @@ export const parseGame = (rawData: unknown): Game => {
     game_id: number;
     entry_count: number;
     stack: number;
-    date: Date;
+    date: string;
   };
   return {
     gameId: data.game_id,
@@ -72,7 +72,7 @@ export const parseGameList = (rawData: unknown[]): Game[] => {
     game_id: number;
     entry_count: number;
     stack: number;
-    date: Date;
+    date: string;
   }[];
   const gameList: Game[] = [];
   dataList.forEach((data) => {

@@ -76,3 +76,5 @@ export class GameController implements IController<Game, NewGame> {
     return parseGame(result[0]);
   }
 }
+
+export const gameController = new GameController();

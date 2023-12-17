@@ -89,3 +89,5 @@ export class CalculateController
     return parseCalculate(result[0]);
   }
 }
+
+export const calculateController = new CalculateController();

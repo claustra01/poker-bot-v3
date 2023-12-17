@@ -1,3 +1,5 @@
+import { Calculate } from '../types/calculate';
+import { Game } from '../types/game';
 import { Player } from '../types/player';
 
 export const parsePlayer = (rawData: unknown): Player => {
@@ -48,4 +50,92 @@ export const parsePlayerList = (rawData: unknown[]): Player[] => {
     });
   });
   return playerList;
+};
+
+export const parseGame = (rawData: unknown): Game => {
+  const data = rawData as {
+    game_id: number;
+    entry_count: number;
+    stack: number;
+    date: string;
+  };
+  return {
+    gameId: data.game_id,
+    entryCount: data.entry_count,
+    stack: data.stack,
+    date: data.date,
+  };
+};
+
+export const parseGameList = (rawData: unknown[]): Game[] => {
+  const dataList = rawData as {
+    game_id: number;
+    entry_count: number;
+    stack: number;
+    date: string;
+  }[];
+  const gameList: Game[] = [];
+  dataList.forEach((data) => {
+    gameList.push({
+      gameId: data.game_id,
+      entryCount: data.entry_count,
+      stack: data.stack,
+      date: data.date,
+    });
+  });
+  return gameList;
+};
+
+export const parseCalculate = (rawData: unknown): Calculate => {
+  const data = rawData as {
+    calc_id: number;
+    game_id: number;
+    stack: number;
+    winner_name: string;
+    winner_rate: number;
+    winner_is_excluded: boolean;
+    loser_name: string;
+    loser_rate: number;
+    loser_is_excluded: boolean;
+  };
+  return {
+    calcId: data.calc_id,
+    gameId: data.game_id,
+    stack: data.stack,
+    winnerName: data.winner_name,
+    winnerRate: data.winner_rate,
+    winnerIsExcluded: data.winner_is_excluded,
+    loserName: data.loser_name,
+    loserRate: data.loser_rate,
+    loserIsExcluded: data.loser_is_excluded,
+  };
+};
+
+export const parseCalculateList = (rawData: unknown[]): Calculate[] => {
+  const dataList = rawData as {
+    calc_id: number;
+    game_id: number;
+    stack: number;
+    winner_name: string;
+    winner_rate: number;
+    winner_is_excluded: boolean;
+    loser_name: string;
+    loser_rate: number;
+    loser_is_excluded: boolean;
+  }[];
+  const calculateList: Calculate[] = [];
+  dataList.forEach((data) => {
+    calculateList.push({
+      calcId: data.calc_id,
+      gameId: data.game_id,
+      stack: data.stack,
+      winnerName: data.winner_name,
+      winnerRate: data.winner_rate,
+      winnerIsExcluded: data.winner_is_excluded,
+      loserName: data.loser_name,
+      loserRate: data.loser_rate,
+      loserIsExcluded: data.loser_is_excluded,
+    });
+  });
+  return calculateList;
 };

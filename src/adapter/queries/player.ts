@@ -83,9 +83,7 @@ export class PlayerController implements IController<Player, NewPlayer> {
   async update(replaceData: Player): Promise<Player> {
     const result = await this.pool
       .query(
-        `UPDATE players SET discord_id = $2, current_rate = $3, max_rate = $4, 
-      game_count = $5, first_win_count = $6, second_win_count = $7, third_win_count = $8 
-      WHERE player_name = $1 RETURNING *`,
+        `UPDATE players SET discord_id = $2, current_rate = $3, max_rate = $4, game_count = $5, first_win_count = $6, second_win_count = $7, third_win_count = $8 WHERE player_name = $1 RETURNING *`,
         [
           replaceData.playerName,
           replaceData.discordId || '',

@@ -1,6 +1,7 @@
 import { isValid } from 'date-fns';
 import { parse } from 'date-fns/fp';
 import { config } from '../../config/config';
+import { addMedal } from '../../usecase/functions/addMedal';
 import { calculateRate } from '../../usecase/functions/calculateRate';
 import { makePlayerObject } from '../../usecase/functions/makeObject';
 import { Calculate, NewCalculate } from '../../usecase/types/calculate';
@@ -137,8 +138,14 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
   try {
     await transactionController.begin();
     const playerObj = makePlayerObject(playerList);
-    const updatedPlayerObj = calculateRate(playerObj, calcList);
-    Object.values(updatedPlayerObj).forEach(async (player) => {
+    const rateUpdatedPlayerObj = calculateRate(playerObj, calcList);
+    const medalUpdatedPlayerObj = addMedal(
+      rateUpdatedPlayerObj,
+      playerList[0].playerName,
+      playerList[1].playerName,
+      playerList[2].playerName
+    );
+    Object.values(medalUpdatedPlayerObj).forEach(async (player) => {
       await playerController.update(player);
     });
     await transactionController.commit();
@@ -146,7 +153,7 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
     await transactionController.rollback();
     return {
       type: ReplyType.Error,
-      errorText: `${error}`,
+      errorText: 'Error: Calculation Failed: use `recalculate` command',
     };
   }
 

@@ -1,0 +1,42 @@
+import { Reply, ReplyType } from '../../usecase/types/reply';
+import { playerController } from '../queries/player';
+
+export const commandRanking = async (args: string[]): Promise<Reply> => {
+  if (args.length !== 2) {
+    return {
+      type: ReplyType.Error,
+      errorText: `Invalid Arguments: maxRange`,
+    };
+  }
+  const maxRange = parseInt(args[1]);
+  if (isNaN(maxRange)) {
+    return {
+      type: ReplyType.Error,
+      errorText: `Error: maxRange is not a number`,
+    };
+  }
+  if (maxRange < 1 || maxRange > 10) {
+    return {
+      type: ReplyType.Error,
+      errorText: `Error: maxRange must be between 1 and 10`,
+    };
+  }
+  try {
+    const players = await playerController.readRanking(maxRange);
+    let replyText = '';
+    players.forEach((player, index) => {
+      replyText += `${index + 1}. ${
+        player.discordId ? player.discordId : player.playerName
+      }: ${player.currentRate}pt\n`;
+    });
+    return {
+      type: ReplyType.Text,
+      contentText: replyText,
+    };
+  } catch (error) {
+    return {
+      type: ReplyType.Error,
+      errorText: `${error}`,
+    };
+  }
+};

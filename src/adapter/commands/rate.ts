@@ -5,7 +5,7 @@ export const commandRate = async (args: string[]): Promise<Reply> => {
   if (args.length !== 2) {
     return {
       type: ReplyType.Error,
-      errorText: `Invalid Arguments: PlayerName|DiscordId`,
+      errorText: `Invalid Arguments: PlayerName|DiscordID`,
     };
   }
   try {
@@ -13,7 +13,7 @@ export const commandRate = async (args: string[]): Promise<Reply> => {
     let replyText = `${
       player.discordId ? player.discordId : player.playerName
     }'s `;
-    replyText += `rate: ${player.currentRate}pt `;
+    replyText += `rate: **${player.currentRate}**pt `;
     replyText += `(max: ${player.maxRate}pt) / ${player.gameCount}game\n`;
     replyText += `${':first_place:'.repeat(player.firstWinCount)}`;
     replyText += `${':second_place:'.repeat(player.secondWinCount)}`;

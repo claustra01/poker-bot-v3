@@ -13,12 +13,12 @@ export const commandRegister = async (args: string[]): Promise<Reply> => {
         const player = await playerController.create(playerData);
         return {
           type: ReplyType.Text,
-          contentText: `Creation Successful: ${player.playerName}`,
+          contentText: `Creation Successful: **${player.playerName}**`,
         };
       } catch (error) {
         return {
           type: ReplyType.Error,
-          errorText: `Creation Failed: ${error}`,
+          errorText: `Error: ${error}`,
         };
       }
     }
@@ -27,7 +27,7 @@ export const commandRegister = async (args: string[]): Promise<Reply> => {
       if (!args[2].startsWith('<@') || !args[2].endsWith('>')) {
         return {
           type: ReplyType.Error,
-          errorText: `Invalid DiscordId: ${args[2]}`,
+          errorText: `Error: Invalid DiscordID: **${args[2]}**`,
         };
       }
       const playerData: NewPlayer = {
@@ -38,12 +38,12 @@ export const commandRegister = async (args: string[]): Promise<Reply> => {
         const player = await playerController.create(playerData);
         return {
           type: ReplyType.Text,
-          contentText: `Creation Successful: ${player.playerName} / ${player.discordId}`,
+          contentText: `Register Successful: **${player.playerName}** / ${player.discordId}`,
         };
       } catch (error) {
         return {
           type: ReplyType.Error,
-          errorText: `Creation Failed: ${error}`,
+          errorText: `Error: ${error}`,
         };
       }
     }
@@ -51,7 +51,7 @@ export const commandRegister = async (args: string[]): Promise<Reply> => {
     default: {
       return {
         type: ReplyType.Error,
-        errorText: `Invalid Arguments: PlayerName, DiscordId (Optional)`,
+        errorText: `Invalid Arguments: PlayerName, DiscordID (Optional)`,
       };
     }
   }

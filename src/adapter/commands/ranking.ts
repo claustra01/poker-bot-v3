@@ -25,7 +25,7 @@ export const commandRanking = async (args: string[]): Promise<Reply> => {
     const players = await playerController.readRanking(maxRange);
     let replyText = '';
     players.forEach((player, index) => {
-      replyText += `${index + 1}. ${
+      replyText += `**${index + 1}**. ${
         player.discordId ? player.discordId : player.playerName
       }: `;
       replyText += `**${player.currentRate}**pt\n`;

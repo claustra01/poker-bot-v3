@@ -14,7 +14,7 @@ export const commandRate = async (args: string[]): Promise<Reply> => {
       player.discordId ? player.discordId : player.playerName
     }'s `;
     replyText += `rate: **${player.currentRate}**pt `;
-    replyText += `(max: ${player.maxRate}pt) / ${player.gameCount}game\n`;
+    replyText += `(max: ${player.maxRate}pt) / **${player.gameCount}**game\n`;
     replyText += `${':first_place:'.repeat(player.firstWinCount)}`;
     replyText += `${':second_place:'.repeat(player.secondWinCount)}`;
     replyText += `${':third_place:'.repeat(player.thirdWinCount)}`;

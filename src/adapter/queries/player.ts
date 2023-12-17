@@ -1,10 +1,7 @@
-import {
-  parsePlayer,
-  parsePlayerList,
-} from '../../application/functions/parseJson';
-import { IController } from '../../application/interfaces/controller';
-import { IDatabase } from '../../application/interfaces/db';
-import { NewPlayer, Player } from '../../application/types/player';
+import { parsePlayer, parsePlayerList } from '../../domain/functions/parseJson';
+import { IController } from '../../domain/interfaces/controller';
+import { IDatabase } from '../../domain/interfaces/db';
+import { NewPlayer, Player } from '../../domain/types/player';
 
 export class PlayerController implements IController<Player, NewPlayer> {
   private pool!: IDatabase;

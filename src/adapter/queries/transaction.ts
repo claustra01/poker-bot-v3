@@ -1,4 +1,4 @@
-import { IDatabase } from '../../application/interfaces/db';
+import { IDatabase } from '../../domain/interfaces/db';
 
 export class TransactionController {
   private pool!: IDatabase;

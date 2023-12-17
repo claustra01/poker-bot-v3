@@ -1,10 +1,10 @@
 import {
   parseCalculate,
   parseCalculateList,
-} from '../../application/functions/parseJson';
-import { IController } from '../../application/interfaces/controller';
-import { IDatabase } from '../../application/interfaces/db';
-import { Calculate, NewCalculate } from '../../application/types/calculate';
+} from '../../domain/functions/parseJson';
+import { IController } from '../../domain/interfaces/controller';
+import { IDatabase } from '../../domain/interfaces/db';
+import { Calculate, NewCalculate } from '../../domain/types/calculate';
 
 export class CalculateController
   implements IController<Calculate, NewCalculate>

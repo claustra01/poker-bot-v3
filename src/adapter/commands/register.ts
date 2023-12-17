@@ -1,5 +1,5 @@
-import { NewPlayer } from '../../application/types/player';
-import { Reply, ReplyType } from '../../application/types/reply';
+import { NewPlayer } from '../../domain/types/player';
+import { Reply, ReplyType } from '../../domain/types/reply';
 import { playerController } from '../queries/player';
 
 export const commandRegister = async (args: string[]): Promise<Reply> => {

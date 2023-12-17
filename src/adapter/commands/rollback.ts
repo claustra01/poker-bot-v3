@@ -1,4 +1,4 @@
-import { Reply, ReplyType } from '../../application/types/reply';
+import { Reply, ReplyType } from '../../domain/types/reply';
 
 export const commandRollback = (args: string[]): Reply => {
   console.log(args);

@@ -9,9 +9,9 @@ import { commandRegister } from '../adapter/commands/register';
 import { commandResult } from '../adapter/commands/result';
 import { commandRollback } from '../adapter/commands/rollback';
 import { generateReply } from '../application/functions/generateReply';
-import { commands } from '../application/types/commands';
-import { Reply, ReplyType } from '../application/types/reply';
 import { config } from '../config/config';
+import { commands } from '../domain/types/commands';
+import { Reply, ReplyType } from '../domain/types/reply';
 
 const commandPrefix = config.commandPrefix;
 const permittedRole = config.permittedRole;

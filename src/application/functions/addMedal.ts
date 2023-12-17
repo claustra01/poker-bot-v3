@@ -1,4 +1,4 @@
-import { PlayerObj } from '../types/player';
+import { PlayerObj } from '../../domain/types/player';
 
 export const addMedal = (
   playerObj: PlayerObj,

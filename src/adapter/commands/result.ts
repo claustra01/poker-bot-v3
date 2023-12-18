@@ -64,11 +64,7 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
   let gameId = -1;
 
   // validation
-  if (
-    !isValid(parsedDate) ||
-    date.length !== 10 ||
-    parsedDate.getFullYear() < 2000
-  ) {
+  if (!isValid(parsedDate) || date.length !== 10) {
     return {
       type: ReplyType.Error,
       errorText: 'Error: Invalid date format: YYYY-MM-DD',

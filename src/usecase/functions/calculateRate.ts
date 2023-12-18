@@ -32,17 +32,18 @@ export const calculateRate = (
   playerObj: PlayerObj,
   calcList: Calculate[]
 ): PlayerObj => {
-  let gameCount = calcList[0].gameId;
   calcList.forEach((calc) => {
-    if (calc.gameId !== gameCount) {
-      playerObj = roundRate(playerObj);
-      gameCount = calc.gameId;
-    }
     const diff = calculateDiff(calcList[0]);
-    if (!calc.loserIsExcluded) {
+    if (
+      !calc.loserIsExcluded ||
+      (calc.winnerIsExcluded && calc.loserIsExcluded)
+    ) {
       playerObj[calc.winnerName].currentRate += diff;
     }
-    if (!calc.winnerIsExcluded) {
+    if (
+      !calc.winnerIsExcluded ||
+      (calc.winnerIsExcluded && calc.loserIsExcluded)
+    ) {
       playerObj[calc.loserName].currentRate -= diff;
     }
   });

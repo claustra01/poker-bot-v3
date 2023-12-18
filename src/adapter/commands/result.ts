@@ -14,7 +14,6 @@ import { playerController } from '../queries/player';
 import { transactionController } from '../queries/transaction';
 
 const rateIgnoreingGameCount = config.rateIgnoreingGameCount;
-const initialModeGameCount = config.initialModeGameCount;
 const parseDate = parse(new Date(), 'yyyy-MM-dd');
 
 const insertGame = async (newData: NewGame): Promise<Game> => {
@@ -39,8 +38,7 @@ const insertCalc = async (newData: NewCalculate): Promise<Calculate> => {
     });
 };
 
-const isExcluded = (gameId: number, playerGameCount: number): boolean => {
-  if (gameId <= initialModeGameCount) return false;
+const isExcluded = (playerGameCount: number): boolean => {
   if (playerGameCount <= rateIgnoreingGameCount) return true;
   return false;
 };
@@ -113,10 +111,10 @@ export const commandResult = async (args: string[]): Promise<Reply> => {
             stack: game.stack,
             winnerName: playerList[i].playerName,
             winnerRate: playerList[i].currentRate,
-            winnerIsExcluded: isExcluded(game.gameId, playerList[i].gameCount),
+            winnerIsExcluded: isExcluded(playerList[i].gameCount),
             loserName: playerList[j].playerName,
             loserRate: playerList[j].currentRate,
-            loserIsExcluded: isExcluded(game.gameId, playerList[j].gameCount),
+            loserIsExcluded: isExcluded(playerList[j].gameCount),
           });
           calcList.push(calc);
         }

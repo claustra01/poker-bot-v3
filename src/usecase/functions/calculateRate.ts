@@ -2,8 +2,8 @@ import { config } from '../../config/config';
 import { Calculate } from '../../domain/types/calculate';
 import { PlayerObj } from '../../domain/types/player';
 
-const BaseWeightedCoefficient = config.BaseWeightedCoefficient;
-const StackWeightedCoefficient = config.StackWeightedCoefficient;
+const BaseWeightedCoefficient = config.baseWeightedCoefficient;
+const StackWeightedCoefficient = config.stackWeightedCoefficient;
 
 const log100 = (x: number): number => {
   return Math.log(x) / Math.log(100);

@@ -9,16 +9,16 @@
   "commandPrefix": "./", 
   "permittedRole": "admin",
   "initialRate": 1500,
-  "BaseWeightedCoefficient": 4,
-  "StackWeightedCoefficient": 1.5,
+  "baseWeightedCoefficient": 4,
+  "stackWeightedCoefficient": 1.5,
   "rateIgnoreingGameCount": 3
 }
 ```
 - `commandPrefix`: コマンドの頭に付ける記号です。複数文字も設定できます。
 - `permittedRole`: 権限が必要なコマンドを実行できるロールです。完全一致する必要があります。
 - `initialRate`: 初期レートです。この値から補正期間を挟みレートが決定します。
-- `BaseWeightedCoefficient`: レート変動値にかける係数です。詳しくは後述します。
-- `StackWeightedCoefficient`: 初期スタックとレート変動値の関係を決定する係数です。詳しくは後述します。
+- `baseWeightedCoefficient`: レート変動値にかける係数です。詳しくは後述します。
+- `stackWeightedCoefficient`: 初期スタックとレート変動値の関係を決定する係数です。詳しくは後述します。
 - `rateIgnoreingGameCount`: 補正期間となるゲーム数です。初回からこの回数までは他の人のレートに影響を与えません。（補正期間のプレイヤー同士でのレート変動は発生します。）
 
 ## レート計算式

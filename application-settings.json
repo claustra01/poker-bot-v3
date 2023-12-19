@@ -2,7 +2,7 @@
   "commandPrefix": "./", 
   "permittedRole": "admin",
   "initialRate": 1500,
-  "BaseWeightedCoefficient": 4,
-  "StackWeightedCoefficient": 1.5,
+  "baseWeightedCoefficient": 4,
+  "stackWeightedCoefficient": 1.5,
   "rateIgnoreingGameCount": 3
 }

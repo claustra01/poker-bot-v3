@@ -4,6 +4,7 @@ import { PlayerObj } from '../../domain/types/player';
 
 const BaseWeightedCoefficient = config.baseWeightedCoefficient;
 const StackWeightedCoefficient = config.stackWeightedCoefficient;
+const infrationWeightedCoefficient = config.infrationWeightedCoefficient;
 
 const log100 = (x: number): number => {
   return Math.log(x) / Math.log(100);
@@ -44,7 +45,8 @@ export const calculateRate = (
       !calc.winnerIsExcluded ||
       (calc.winnerIsExcluded && calc.loserIsExcluded)
     ) {
-      playerObj[calc.loserName].currentRate -= diff;
+      playerObj[calc.loserName].currentRate -=
+        diff * infrationWeightedCoefficient;
     }
   });
   playerObj = roundRate(playerObj);

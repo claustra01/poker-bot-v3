@@ -11,6 +11,7 @@
   "initialRate": 1500,
   "baseWeightedCoefficient": 4,
   "stackWeightedCoefficient": 1.5,
+  "infrationWeightedCoefficient": 0.8,
   "rateIgnoreingGameCount": 3
 }
 ```
@@ -19,6 +20,7 @@
 - `initialRate`: 初期レートです。この値から補正期間を挟みレートが決定します。
 - `baseWeightedCoefficient`: レート変動値にかける係数です。詳しくは後述します。
 - `stackWeightedCoefficient`: 初期スタックとレート変動値の関係を決定する係数です。詳しくは後述します。
+- `infrationWeightedCoefficient`: レートが下がるときの値を調整する係数です。詳しくは後述します。
 - `rateIgnoreingGameCount`: 補正期間となるゲーム数です。初回からこの回数までは他の人のレートに影響を与えません。（補正期間のプレイヤー同士でのレート変動は発生します。）
 
 ## レート計算式
@@ -33,5 +35,30 @@ const calculateDiff = (calc: Calculate): number => {
     BaseWeightedCoefficient *
     Math.pow(log100(calc.stack), StackWeightedCoefficient)
   );
+};
+```
+```ts
+export const calculateRate = (
+  playerObj: PlayerObj,
+  calcList: Calculate[]
+): PlayerObj => {
+  calcList.forEach((calc) => {
+    const diff = calculateDiff(calcList[0]);
+    if (
+      !calc.loserIsExcluded ||
+      (calc.winnerIsExcluded && calc.loserIsExcluded)
+    ) {
+      playerObj[calc.winnerName].currentRate += diff;
+    }
+    if (
+      !calc.winnerIsExcluded ||
+      (calc.winnerIsExcluded && calc.loserIsExcluded)
+    ) {
+      playerObj[calc.loserName].currentRate -=
+        diff * infrationWeightedCoefficient;
+    }
+  });
+  playerObj = roundRate(playerObj);
+  return playerObj;
 };
 ```

@@ -4,5 +4,6 @@
   "initialRate": 1500,
   "baseWeightedCoefficient": 4,
   "stackWeightedCoefficient": 1.5,
+  "infrationWeightedCoefficient": 0.8,
   "rateIgnoreingGameCount": 3
 }

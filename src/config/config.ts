@@ -6,6 +6,7 @@ export class Config {
   initialRate: number;
   baseWeightedCoefficient: number;
   stackWeightedCoefficient: number;
+  infrationWeightedCoefficient: number;
   rateIgnoreingGameCount: number;
 
   constructor() {
@@ -14,6 +15,7 @@ export class Config {
     this.initialRate = 1500;
     this.baseWeightedCoefficient = 4;
     this.stackWeightedCoefficient = 1.5;
+    this.infrationWeightedCoefficient = 0.8;
     this.rateIgnoreingGameCount = 3;
   }
 
@@ -23,6 +25,7 @@ export class Config {
     this.initialRate = settings.initialRate;
     this.baseWeightedCoefficient = settings.baseWeightedCoefficient;
     this.stackWeightedCoefficient = settings.stackWeightedCoefficient;
+    this.infrationWeightedCoefficient = settings.infrationWeightedCoefficient;
     this.rateIgnoreingGameCount = settings.rateIgnoreingGameCount;
     console.log('Config Loaded Successfully');
   }

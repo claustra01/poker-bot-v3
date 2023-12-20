@@ -34,7 +34,7 @@ export const calculateRate = (
   calcList: Calculate[]
 ): PlayerObj => {
   calcList.forEach((calc) => {
-    const diff = calculateDiff(calcList[0]);
+    const diff = calculateDiff(calc);
     if (
       !calc.loserIsExcluded ||
       (calc.winnerIsExcluded && calc.loserIsExcluded)
